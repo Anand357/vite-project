@@ -1,0 +1,32 @@
+/* ============================================================
+   UTILS — Badges, tags, misc shared components
+============================================================ */
+
+/* ── Badges ─────────────────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 9px; border-radius: var(--r-pill);
+  font-size: .68rem; font-weight: 700; white-space: nowrap;
+}
+.b-vis  { background: var(--jade-soft);  color: var(--jade); border: 1px solid rgba(0,201,138,.2); }
+.b-hid  { background: rgba(82,79,107,.15); color: var(--txt3); border: 1px solid rgba(82,79,107,.2); }
+.b-free { background: rgba(82,79,107,.12); color: var(--txt3); }
+.b-std  { background: var(--red-soft);   color: var(--red);  border: 1px solid rgba(229,37,63,.2); }
+.b-prem { background: var(--amber-soft); color: var(--amber);border: 1px solid rgba(232,151,26,.2); }
+
+/* ── Tags (admin / plan labels) ─────────────────────────── */
+.tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 9px; border-radius: var(--r-pill);
+  font-size: .66rem; font-weight: 800;
+  letter-spacing: .05em; text-transform: uppercase; white-space: nowrap;
+}
+.tag-admin    { background: var(--amber-soft);             border: 1px solid rgba(232,151,26,.3);  color: var(--amber); }
+.tag-subadmin { background: rgba(124,58,237,.14);          border: 1px solid rgba(124,58,237,.3);  color: #a78bfa; }
+.tag-l1       { background: rgba(99,179,237,.1);           border: 1px solid rgba(99,179,237,.28); color: #63b3ed; }
+.tag-l2       { background: rgba(154,115,246,.13);         border: 1px solid rgba(154,115,246,.3); color: #9b72f6; }
+.tag-l3       { background: var(--amber-soft);             border: 1px solid rgba(232,151,26,.28); color: var(--amber); }
+.tag-blocked  { background: var(--red-soft);               border: 1px solid rgba(229,37,63,.25);  color: var(--red); }
+.tag-free     { background: rgba(82,79,107,.12);           border: 1px solid rgba(82,79,107,.2);   color: var(--txt3); }
+.tag-standard { background: var(--red-soft);               border: 1px solid rgba(229,37,63,.2);   color: var(--red); }
+.tag-premium  { background: var(--amber-soft);             border: 1px solid rgba(232,151,26,.2);  color: var(--amber); }

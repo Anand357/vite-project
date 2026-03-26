@@ -1,0 +1,109 @@
+/* ============================================================
+   SUBSCRIBE — Plan selection page
+============================================================ */
+.plans {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 14px; margin-top: 28px;
+}
+
+.plan {
+  background: var(--surface); border: 1.5px solid var(--rim);
+  border-radius: var(--r-lg); padding: 26px 22px;
+  position: relative; transition: border-color var(--dur-fast);
+  display: flex; flex-direction: column;
+}
+.plan:hover { border-color: var(--rim2); }
+
+/* Featured (Premium) */
+.plan.featured {
+  border-color: rgba(229,37,63,.4);
+  background: linear-gradient(160deg, rgba(229,37,63,.07), var(--surface) 60%);
+}
+.plan.featured::before {
+  content: '';
+  position: absolute; inset: 0; border-radius: var(--r-lg);
+  background: linear-gradient(160deg, rgba(255,255,255,.04) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* Current plan */
+.plan.plan-current {
+  border-color: var(--jade) !important;
+  background: rgba(0,201,138,.04) !important;
+}
+
+/* Badges */
+.plan-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--red); color: #fff;
+  font-size: .65rem; font-weight: 900; padding: 4px 14px;
+  border-radius: var(--r-pill); white-space: nowrap;
+  letter-spacing: .07em; text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(229,37,63,.4);
+}
+.plan-current-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--jade); color: var(--void);
+  font-size: .65rem; font-weight: 900; padding: 4px 14px;
+  border-radius: var(--r-pill); white-space: nowrap;
+  letter-spacing: .07em; text-transform: uppercase;
+}
+
+/* Content */
+.plan-name {
+  font-family: var(--font-d); font-size: 1.3rem; letter-spacing: .05em; margin-bottom: 6px;
+}
+.plan-price { display: flex; align-items: baseline; gap: 5px; margin-bottom: 20px; }
+.plan-price-n {
+  font-family: var(--font-d); font-size: 3rem; letter-spacing: .02em; line-height: 1;
+}
+.plan-price-p { color: var(--txt3); font-size: .78rem; }
+
+/* Feature list */
+.plan-feats { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 24px; flex: 1; }
+.plan-feat  { display: flex; align-items: center; gap: 9px; font-size: .83rem; color: var(--txt2); }
+
+.pfc {
+  width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+  background: var(--jade-soft); border: 1px solid rgba(0,201,138,.3);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--jade); font-size: .6rem;
+}
+.pfx {
+  width: 18px; height: 18px; border-radius: 50%; flex-shrink: 0;
+  background: var(--raised); border: 1px solid var(--rim);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--txt4); font-size: .6rem;
+}
+
+/* Current plan button */
+.btn-current-plan {
+  background: var(--jade-soft); border: 1.5px solid var(--jade);
+  color: var(--jade); cursor: default; pointer-events: none;
+}
+
+/* Admin note */
+.sub-admin-note {
+  background: var(--jade-soft); border: 1px solid rgba(0,201,138,.2);
+  border-radius: var(--r-md); padding: 14px 16px;
+  font-size: .82rem; color: var(--txt2); line-height: 1.65;
+  margin-bottom: 28px;
+}
+
+/* Comparison table */
+.sub-compare       { margin-top: 40px; }
+.sub-compare-title { font-family: var(--font-d); font-size: 1.25rem; letter-spacing: .05em; margin-bottom: 14px; }
+
+.sub-table { width: 100%; border-collapse: collapse; font-size: .82rem; border-radius: var(--r-md); overflow: hidden; border: 1px solid var(--rim); }
+.sub-table thead th {
+  background: var(--raised); color: var(--txt2); padding: 10px 12px;
+  text-align: center; font-weight: 700; font-size: .72rem;
+  text-transform: uppercase; letter-spacing: .07em;
+}
+.sub-table thead th:first-child { text-align: left; }
+.sub-table tbody td { padding: 10px 12px; border-top: 1px solid var(--rim); text-align: center; color: var(--txt2); }
+.sub-table tbody td:first-child { text-align: left; font-weight: 600; color: var(--txt); }
+.sub-table tbody tr:hover td { background: rgba(255,255,255,.015); }
+.sub-check     { color: var(--jade); font-weight: 700; }
+.sub-cross     { color: var(--txt4); }
+.sub-col-current { color: var(--txt) !important; font-weight: 700; }

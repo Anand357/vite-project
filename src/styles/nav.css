@@ -1,0 +1,161 @@
+/* ============================================================
+   NAV — Top navigation + mobile bottom nav
+============================================================ */
+#nav {
+  position: fixed; inset: 0 0 auto; z-index: 500;
+  height: 60px; display: flex; align-items: center;
+  padding: 0 20px;
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid var(--rim);
+}
+@media (min-width: 768px) { #nav { height: 64px; padding: 0 32px; } }
+
+/* Logo */
+.logo {
+  font-family: var(--font-d); font-size: 1.6rem; letter-spacing: .06em;
+  color: var(--txt); cursor: pointer; flex-shrink: 0;
+  user-select: none; display: flex; align-items: center;
+}
+.logo em { color: var(--red); font-style: normal; }
+
+/* Desktop links */
+.nav-links { display: none; margin-left: 36px; align-items: center; gap: 2px; }
+@media (min-width: 768px) { .nav-links { display: flex; } }
+
+.nl {
+  font-size: .82rem; font-weight: 500; color: var(--txt3);
+  padding: 6px 12px; border-radius: var(--r-sm);
+  cursor: pointer; transition: all var(--dur-fast);
+  position: relative; white-space: nowrap;
+}
+.nl:hover { color: var(--txt2); background: rgba(255,255,255,.04); }
+.nl.act   { color: var(--txt); font-weight: 600; }
+.nl.act::after {
+  content: ''; position: absolute;
+  bottom: -1px; left: 50%; transform: translateX(-50%);
+  width: 18px; height: 2px; border-radius: 2px;
+  background: var(--red);
+}
+.nl.admin-nl        { color: var(--amber); }
+.nl.admin-nl:hover  { color: var(--amber); opacity: .8; }
+.nl-credits         { color: var(--jade) !important; font-weight: 600; }
+.nl-credits:hover   { opacity: .8; }
+.nl-credits.act::after { background: var(--jade); }
+
+/* Right side */
+.nav-r { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+
+/* Notification bell */
+.notif-bell {
+  position: relative; width: 36px; height: 36px;
+  border-radius: var(--r-sm);
+  background: var(--raised); border: 1px solid var(--rim);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all var(--dur-fast); color: var(--txt3);
+}
+.notif-bell:hover { border-color: var(--rim2); color: var(--txt2); }
+.notif-bell .icon { width: 17px; height: 17px; }
+
+.notif-dot {
+  position: absolute; top: -4px; right: -4px;
+  background: var(--red); color: #fff;
+  font-size: .52rem; font-weight: 800;
+  min-width: 16px; height: 16px; padding: 0 3px;
+  border-radius: var(--r-pill); text-align: center; line-height: 16px;
+  border: 2px solid var(--void); letter-spacing: 0;
+}
+
+/* User pill */
+.upill {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--raised); border: 1px solid var(--rim);
+  border-radius: var(--r-pill); padding: 4px 13px 4px 4px;
+  cursor: pointer; transition: border-color var(--dur-fast);
+}
+.upill:hover { border-color: var(--rim2); }
+@media (max-width: 767px) { .upill { padding: 3px; border-radius: 50%; } .uname { display: none; } }
+
+.uav {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), var(--amber));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: .72rem; color: #fff; flex-shrink: 0;
+}
+.uname {
+  font-size: .78rem; font-weight: 600; color: var(--txt2);
+  max-width: 88px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ── Notifications panel ─────────────────────────────────── */
+.notif-overlay {
+  position: fixed; inset: 0; z-index: 700;
+  background: rgba(0,0,0,.55); backdrop-filter: blur(6px);
+  display: flex; justify-content: flex-end; align-items: flex-start;
+  padding-top: 60px;
+}
+.notif-panel {
+  width: 100%; max-width: 380px; max-height: calc(100vh - 76px);
+  background: var(--deep); border: 1px solid var(--rim2);
+  border-radius: 0 0 0 var(--r-lg); display: flex; flex-direction: column;
+  animation: slideDown .22s var(--ease-spring); overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+@media (max-width: 480px) { .notif-panel { max-width: 100%; border-radius: 0; } }
+@keyframes slideDown { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:none; } }
+
+.notif-panel-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; border-bottom: 1px solid var(--rim); flex-shrink: 0;
+}
+.notif-list   { overflow-y: auto; flex: 1; }
+.notif-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 16px; cursor: pointer;
+  transition: background var(--dur-fast);
+  border-bottom: 1px solid var(--rim); position: relative;
+}
+.notif-item:hover    { background: var(--raised); }
+.notif-item.unread   { background: rgba(229,37,63,.03); }
+.notif-thumb         { width: 44px; height: 58px; object-fit: cover; border-radius: var(--r-sm); flex-shrink: 0; }
+.notif-body          { flex: 1; min-width: 0; }
+.notif-title         { font-size: .8rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 3px; }
+.notif-msg           { font-size: .72rem; color: var(--txt2); line-height: 1.4; }
+.notif-ts            { font-size: .65rem; color: var(--txt3); margin-top: 4px; }
+.notif-unread-dot    { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+
+/* ── Bottom nav (mobile) ─────────────────────────────────── */
+#bnav {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+  height: 64px; background: var(--glass);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--rim);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (max-width: 767px) { #bnav { display: flex; } }
+
+.bni {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 4px; color: var(--txt4);
+  padding: 6px 2px;
+  transition: color var(--dur-fast);
+  -webkit-tap-highlight-color: transparent; cursor: pointer;
+}
+.bni.act           { color: var(--red); }
+.bni.bni-highlight { color: var(--txt3); }
+.bni.bni-highlight.act { color: var(--jade); }
+
+.bni-ic {
+  display: flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px;
+}
+.bni-ic .icon               { width: 20px; height: 20px; --icon-color: currentColor; }
+.bni.act .bni-ic .icon      { --icon-color: var(--red); }
+.bni.bni-highlight.act .bni-ic .icon { --icon-color: var(--jade); }
+
+.bni-lbl {
+  font-size: .53rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em;
+  white-space: nowrap; line-height: 1;
+}

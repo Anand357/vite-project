@@ -1,0 +1,28 @@
+// src/utils/mockData.js
+import { db } from '../firebase.js'
+import { doc, setDoc, getDocs, collection, serverTimestamp } from 'firebase/firestore'
+
+export const MOCK = [
+  { id: 'm1', title: 'Love in Seoul', genre: 'Romance', episodes: 6, thumbnail: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&q=80', description: 'A heartwarming romance set in the neon-lit streets of Seoul.', section: 'Featured', trending: true, trendRank: 1, episodeUrls: Array(6).fill('https://www.w3schools.com/html/mov_bbb.mp4') },
+  { id: 'm2', title: 'Midnight Mystery', genre: 'Thriller', episodes: 8, thumbnail: 'https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=500&q=80', description: 'A detective chases shadows in a city that never sleeps.', section: 'Trending', trending: true, trendRank: 2, episodeUrls: Array(8).fill('https://www.w3schools.com/html/mov_bbb.mp4') },
+  { id: 'm3', title: 'Campus Days', genre: 'Comedy', episodes: 10, thumbnail: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=500&q=80', description: 'Hilarious misadventures of college roommates.', section: 'Comedy', trending: true, trendRank: 3, episodeUrls: Array(10).fill('https://www.w3schools.com/html/mov_bbb.mp4') },
+  { id: 'm4', title: 'Steel Heart', genre: 'Action', episodes: 12, thumbnail: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=500&q=80', description: 'A warrior fights for justice in a corrupt ancient empire.', section: 'Action', trending: true, trendRank: 4, episodeUrls: Array(12).fill('https://www.w3schools.com/html/mov_bbb.mp4') },
+  { id: 'm5', title: 'Moonlit Promise', genre: 'Romance', episodes: 6, thumbnail: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&q=80', description: 'Two strangers meet under the moon and change each other forever.', section: 'Featured', trending: true, trendRank: 5, episodeUrls: Array(6).fill('https://www.w3schools.com/html/mov_bbb.mp4') },
+  { id: 'm6', title: 'Office Rivals', genre: 'Comedy', episodes: 16, thumbnail: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=500&q=80', description: 'The war between two desks becomes the talk of the company.', section: 'Comedy', trending: true, trendRank: 6, episodeUrls: Array(16).fill('https://www.w3schools.com/html/mov_bbb.mp4') },
+  { id: 'm7', title: 'Dark Signal', genre: 'Thriller', episodes: 10, thumbnail: 'https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?w=500&q=80', description: 'A hacker uncovers a conspiracy that puts her life at risk.', section: 'Trending', trending: true, trendRank: 7, episodeUrls: Array(10).fill('https://www.w3schools.com/html/mov_bbb.mp4') },
+  { id: 'm8', title: 'Blooms & Bliss', genre: 'Romance', episodes: 8, thumbnail: 'https://images.unsplash.com/photo-1490750967868-88df5691bbf8?w=500&q=80', description: 'A florist and a chef find love between petals and recipes.', section: 'Featured', trending: true, trendRank: 8, episodeUrls: Array(8).fill('https://www.w3schools.com/html/mov_bbb.mp4') },
+  { id: 'm9', title: 'Shadow Clan', genre: 'Action', episodes: 14, thumbnail: 'https://images.unsplash.com/photo-1521714161819-15534968fc5f?w=500&q=80', description: 'Ancient clans clash in an epic battle for honour and survival.', section: 'Action', trending: true, trendRank: 9, episodeUrls: Array(14).fill('https://www.w3schools.com/html/mov_bbb.mp4') },
+  { id: 'm10', title: 'Sweet Lies', genre: 'Drama', episodes: 12, thumbnail: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&q=80', description: 'Secrets unravel in a small town full of big ambitions.', section: 'New Arrivals', trending: true, trendRank: 10, episodeUrls: Array(12).fill('https://www.w3schools.com/html/mov_bbb.mp4') },
+]
+
+export async function seedIfEmpty() {
+  const snap = await getDocs(collection(db, 'content'))
+  if (!snap.empty) return
+  for (const m of MOCK) {
+    const { id, ...data } = m
+    await setDoc(doc(db, 'content', id), { ...data, hidden: false, likes: 0, views: 0, createdAt: serverTimestamp() })
+  }
+  await setDoc(doc(db, 'settings', 'banner'), { contentId: 'm1' })
+  await setDoc(doc(db, 'settings', 'sections'), { order: ['Featured', 'Trending', 'Comedy', 'Action', 'New Arrivals'] })
+  await setDoc(doc(db, 'settings', 'trending'), { top10: MOCK.map(m => m.id) })
+}

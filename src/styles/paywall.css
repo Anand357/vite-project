@@ -1,0 +1,137 @@
+/* ============================================================
+   PAYWALL — Episode gate overlay in the player
+============================================================ */
+.paywall-overlay {
+  position: absolute; inset: 0; z-index: 50;
+  display: flex; align-items: flex-end;
+  background: rgba(0,0,0,.6); backdrop-filter: blur(6px);
+  animation: pageIn .22s var(--ease);
+}
+.paywall-box {
+  width: 100%; max-height: 94vh;
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  overflow: hidden; position: relative;
+  display: flex; flex-direction: column;
+  background: var(--deep);
+  border-top: 1px solid var(--rim2);
+  box-shadow: 0 -16px 56px rgba(0,0,0,.7);
+}
+
+/* Blurred thumbnail */
+.paywall-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  filter: blur(28px) brightness(.2) saturate(.6);
+  transform: scale(1.12);
+}
+.paywall-bg-grad {
+  position: absolute; inset: 0;
+  background: linear-gradient(0deg, var(--deep) 45%, rgba(10,10,18,.88) 100%);
+}
+
+/* Content */
+.paywall-body {
+  position: relative; z-index: 2;
+  padding: 28px 20px 32px; overflow-y: auto;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+}
+
+/* Icon — show SVG not emoji */
+.paywall-icon {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--red-soft); border: 1.5px solid rgba(229,37,63,.3);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px; flex-shrink: 0;
+}
+.paywall-icon svg { width: 24px; height: 24px; color: var(--red); }
+
+.paywall-heading {
+  font-family: var(--font-d); font-size: 1.65rem; letter-spacing: .05em;
+  margin-bottom: 8px; color: var(--txt);
+}
+.paywall-text {
+  color: var(--txt2); font-size: .86rem; line-height: 1.65;
+  max-width: 360px; margin-bottom: 24px;
+}
+.paywall-text em { color: var(--txt); font-style: normal; font-weight: 700; }
+
+/* Plan cards */
+.paywall-plans {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  width: 100%; max-width: 400px; margin-bottom: 16px;
+}
+@media (max-width: 360px) { .paywall-plans { grid-template-columns: 1fr; } }
+
+.paywall-plan {
+  background: var(--raised); border: 1.5px solid var(--rim2);
+  border-radius: var(--r-md); padding: 15px 13px;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.paywall-plan:last-child {
+  border-color: rgba(229,37,63,.35);
+  background: rgba(229,37,63,.06);
+}
+.paywall-plan-name  { font-family: var(--font-d); font-size: 1.05rem; letter-spacing: .05em; }
+.paywall-plan-price { color: var(--amber); font-size: .82rem; font-weight: 700; }
+.paywall-plan-perks { display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; }
+.paywall-perk       { color: var(--txt2); font-size: .73rem; text-align: left; }
+
+/* Watch Ad divider + box */
+.paywall-ad-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 14px 0 12px; color: var(--txt3);
+  font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .09em;
+  width: 100%; max-width: 400px;
+}
+.paywall-ad-divider::before,
+.paywall-ad-divider::after { content:''; flex:1; height:1px; background: var(--rim2); }
+
+.paywall-ad-box {
+  width: 100%; max-width: 400px;
+  background: rgba(0,201,138,.04);
+  border: 1.5px solid rgba(0,201,138,.2);
+  border-radius: var(--r-md); padding: 14px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.paywall-ad-top  { display: flex; gap: 12px; align-items: flex-start; }
+.paywall-ad-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+.paywall-ad-title{ font-size: .88rem; font-weight: 700; margin-bottom: 4px; }
+.paywall-ad-desc { color: var(--txt2); font-size: .76rem; line-height: 1.5; }
+
+.paywall-credits-banner {
+  background: rgba(0,201,138,.07); border: 1px solid rgba(0,201,138,.2);
+  border-radius: var(--r-sm); padding: 11px 13px;
+  color: var(--txt); font-size: .8rem; line-height: 1.5;
+  display: flex; flex-direction: column;
+}
+
+/* Watch Ad CTA */
+.btn-watch-ad {
+  width: 100%; display: flex; align-items: center;
+  justify-content: space-between; gap: 10px; padding: 13px 15px;
+  background: rgba(0,201,138,.1);
+  border: 1.5px solid rgba(0,201,138,.35); border-radius: var(--r-md);
+  color: var(--jade); font-size: .88rem; font-weight: 700;
+  cursor: pointer; transition: all var(--dur-fast);
+}
+.btn-watch-ad:hover {
+  background: rgba(0,201,138,.18); border-color: var(--jade);
+  transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,201,138,.18);
+}
+.btn-watch-ad-icon { font-size: 1rem; }
+.btn-watch-ad-badge {
+  background: var(--jade); color: var(--void);
+  font-size: .6rem; font-weight: 900; padding: 2px 7px;
+  border-radius: var(--r-xs); letter-spacing: .07em;
+}
+.paywall-ad-fine { color: var(--txt3); font-size: .68rem; text-align: center; line-height: 1.5; }
+
+/* Back + hint */
+.paywall-back {
+  color: var(--txt3); font-size: .8rem; font-weight: 600;
+  padding: 8px 18px; border-radius: var(--r-sm);
+  border: 1px solid var(--rim); transition: all var(--dur-fast); margin-bottom: 6px;
+}
+.paywall-back:hover { color: var(--txt2); border-color: var(--rim2); }
+.paywall-hint { color: var(--txt3); font-size: .72rem; margin-top: 2px; max-width: 290px; line-height: 1.5; }

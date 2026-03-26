@@ -1,0 +1,21 @@
+/* src/styles/main.css */
+@import './tokens.css';
+@import './icons.css';
+@import './base.css';
+@import './layout.css';
+@import './nav.css';
+@import './auth.css';
+@import './hero.css';
+@import './cards.css';
+@import './player.css';
+@import './profile.css';
+@import './subscribe.css';
+@import './admin.css';
+@import './sections.css';
+@import './users.css';
+@import './utils.css';
+@import './paywall.css';
+@import './features.css';
+@import './detail.css';
+@import './analytics.css';
+@import './light-theme.css';
