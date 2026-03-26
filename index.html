@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="system">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>DramaFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Apply saved theme before first paint — prevents flash -->
+  <script>
+    (function() {
+      const t = localStorage.getItem('dfTheme') || 'system';
+      document.documentElement.setAttribute('data-theme', t);
+      if (t === 'light' || (t === 'system' && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+        document.documentElement.classList.add('theme-light');
+      }
+    })();
+  </script>
+  <script type="module" crossorigin src="/assets/index-BgkgBUUZ.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Co2ksGmT.css">
+</head>
+<body>
+
+  <!-- ── Preloader ── -->
+  <div id="preloader" aria-hidden="true">
+    <div class="pre-inner">
+      <div class="pre-logo">Drama<em>Flow</em></div>
+      <div class="pre-tagline">Premium Short Drama</div>
+      <div class="pre-spinner">
+        <div class="pre-ring"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="app"></div>
+</body>
+</html>
