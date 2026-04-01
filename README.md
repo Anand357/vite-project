@@ -112,7 +112,7 @@ dramaflow-vite/
 
 ## 🔑 Admin Access
 
-- **Super Admin**: Login with `admin@dramaflow.com` — full access to all 5 tabs
+- **Super Admin**: Login with your email — full access to all 5 tabs
 - **Sub-Admin Level 1**: Content + Banner tabs only
 - **Sub-Admin Level 2**: + Trending + Sections tabs
 - **Sub-Admin Level 3**: + Users tab (full access)
